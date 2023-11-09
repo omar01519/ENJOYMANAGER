@@ -99,6 +99,7 @@ namespace PRESENTACION
 
         }
 
+  
         //Validacion datos vacios
         public void ValidacionDatos()
         {
@@ -109,22 +110,36 @@ namespace PRESENTACION
                 {
 
                     Usuario user = new Usuario();
-                    var ValidLogin = user.LoginUser(txtUsuario.Text, TxtContrasena.Text);
-                    if (ValidLogin == true)
-                    {
-                        FormPrincipal menu = new FormPrincipal();
-                        menu.FormClosed += Logout;
-                        menu.Show();
-                        this.Hide();
 
+                    var ValidLogin = user.LoginUser(txtUsuario.Text, TxtContrasena.Text);
+                    int ValidStatus = user.Getintento(txtUsuario.Text);
+
+
+                    if (ValidStatus < 3)
+                    {
+                        if (ValidLogin == true)
+                        {
+                            FormPrincipal menu = new FormPrincipal();
+                            menu.FormClosed += Logout;
+                            menu.Show();
+                            this.Hide();
+
+                        }
+                        else
+                        {
+                            MsgError("Usuario o contraseña incorrectos");
+                            this.TxtContrasena.Clear();
+                            this.txtUsuario.Focus();
+                            //user.incrementarintento(txtUsuario.Text);
+                        }
                     }
                     else
                     {
-                        MsgError("Usuario o contraseña incorrectos");
+                        MsgError("Este usuario esta Bloqueado,\n     Contacta el administrador del sistema.");
                         this.TxtContrasena.Clear();
                         this.txtUsuario.Focus();
+                        //user.incrementarintento(txtUsuario.Text);
                     }
-
                 }
                 else
                 {

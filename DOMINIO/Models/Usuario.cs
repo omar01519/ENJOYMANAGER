@@ -15,6 +15,18 @@ namespace DOMINIO.Models
         {
             return users.Login(User , pass);
         }
+
+        public void incrementarintento(string user)
+        {
+            users.IncrementFailedLoginAttempts(user);
+        }
+        public int Getintento(string user)
+        {
+            return users.GetFailedLoginAttempts(user);
+
+        }
+
+
         public System.Data.DataTable GetRoles()
         {
             return users.CargarRoles();

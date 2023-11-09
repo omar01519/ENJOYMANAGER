@@ -14,7 +14,7 @@ namespace DATOS.Conexion
             connectionsstring;
 
         public ConexionSQL() {
-            connectionsstring = "Server=(LocalDB)\\MSSQLLocalDB;Initial Catalog=ENJOYMANNAGER;Integrated Security=True";
+            connectionsstring = "Server=DESKTOP-TM469VG;Initial Catalog=ENJOYMANNAGER;Integrated Security=True";
         }
 
 
